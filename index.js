@@ -20,3 +20,5 @@ let question1 = new Quiz('Does Mary Jane know Javascript?', 'No', ['dances', 'sm
  let html = questionArray.map(object => template(object));
  let destination = document.querySelector('.handlebars-demo');
   destination.innerHTML = html;
+
+let 
