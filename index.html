@@ -17,11 +17,11 @@
         <h2>{{question}}</h2>
 
         <ul>
-          <li><input type="radio" name="answers" value="a">{{correct}}</li>
-          {{#each mightBe}}<li><input type="radio" name="answers" value="b">{{this}}</li>{{/each}}
+          <li class="correct">{{correct}}</li>
+          {{#each mightBe}}<li class="wrongAnswers">{{this}}</li>{{/each}}
 
         </ul>
-      <div id="answer"></div>
+      <div id="answerSpace"></div>
       </div>
 
     </script>
