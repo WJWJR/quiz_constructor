@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Quiz Question Assignment</title>
+  </head>
+
+  <body>
+    <h1>The Quiz</h1>
+    <div id="quiz"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+
+    <script id="question" type="text/x-handlebars-template">
+      <article>
+
+        <h1>Questions</h1>
+
+        <strong>{{text}}</strong>
+
+        <ul>
+          {{#each choices}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      <span class="answer"></span>
+
+     </article>
+
+    </script>
+
+  <script src="extend_index.js"></script>
+
+  </body>
+
+</html>
