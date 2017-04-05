@@ -23,6 +23,7 @@ this.display = function() {
 }
 let q1 = new Question('What syntax is used in JavaScript', ['let', 'hambugers', 'phone', 'merchant'], 'let');
 let q2 = new Question('What syntax is used in html', ['article', 'hambugers','phone', 'merchant'], 'article');
+console.log(q1);
 let q3 = new Question('What is foo used for in JavaScript', ['variable', 'hambugers','phone', 'merchant'], 'variable');
 let q4 = new Question('What does Handlebars used for in JavaScript', ['templating', 'hambugers','phone', 'merchant'], 'templating');
 [q1, q2, q3, q4].forEach(question => question.display());
