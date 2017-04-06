@@ -81,3 +81,25 @@ let q8 = new ShortAnswerQuestion('Brian is the...', 'The Man');
 [q1, q2, q3, q4].forEach(question => question.display());
 
 [q5, q6, q7, q8].forEach(question => question.displaySA());
+
+
+// let url = "https://opentdb.com/api.php?amount=5&category=28&difficulty=medium"
+//
+// function fetchInit (data) {
+//   return {
+//     method:
+//   }
+// }
+
+fetch("https://opentdb.com/api.php?amount=5&category=28&difficulty=medium")
+  .then(response => response.json())
+  .then(object => object.results[0]);
+  .then(apiDataOnPage);
+  //.then(jsonData => console.log(jsonData));
+
+
+
+function apiDataOnPage(json) {
+  let question = new MultiChoiceQuestion(object.results)
+  console.log(json);
+}
