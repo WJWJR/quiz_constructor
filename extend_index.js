@@ -62,44 +62,66 @@ function ShortAnswerQuestion(text, answer) {
 MultiChoiceQuestion.prototype.choices = function() {
     this.question = this.question + this.answer + this.choices;
 }
-
+//ShortAnswerQuestion is not needed at all
 // ShortAnswerQuestion.prototype.choices = function(){
 //   this.question = this.question + this.answer;
 // }
 
-let q1 = new MultiChoiceQuestion('What syntax is used in JavaScript', 'let', ['let', 'hambugers', 'phone', 'merchant']);
-let q2 = new MultiChoiceQuestion('What syntax is used in html', 'article', ['article', 'hambugers', 'phone', 'merchant']);
-//console.log(q1);
-let q3 = new MultiChoiceQuestion('What is foo used for in JavaScript', 'variable', ['variable', 'hambugers', 'phone', 'merchant']);
-let q4 = new MultiChoiceQuestion('What does Handlebars used for in JavaScript', 'templating', ['templating', 'hambugers', 'phone', 'merchant']);
-let q5 = new ShortAnswerQuestion('Is Detra Fancy', 'yes');
-let q6 = new ShortAnswerQuestion('How do you spell Fancy', 'Fancy');
-let q7 = new ShortAnswerQuestion('How do you spell Detra', 'Detra');
-let q8 = new ShortAnswerQuestion('Brian is the...', 'The Man');
+// The q1 -q8 questions are hard coded to the page
+// let q1 = new MultiChoiceQuestion('What syntax is used in JavaScript', 'let', ['let', 'hambugers', 'phone', 'merchant']);
+// let q2 = new MultiChoiceQuestion('What syntax is used in html', 'article', ['article', 'hambugers', 'phone', 'merchant']);
+// //console.log(q1);
+// let q3 = new MultiChoiceQuestion('What is foo used for in JavaScript', 'variable', ['variable', 'hambugers', 'phone', 'merchant']);
+// let q4 = new MultiChoiceQuestion('What does Handlebars used for in JavaScript', 'templating', ['templating', 'hambugers', 'phone', 'merchant']);
+// let q5 = new ShortAnswerQuestion('Is Detra Fancy', 'yes');
+// let q6 = new ShortAnswerQuestion('How do you spell Fancy', 'Fancy');
+// let q7 = new ShortAnswerQuestion('How do you spell Detra', 'Detra');
+// let q8 = new ShortAnswerQuestion('Brian is the...', 'The Man');
 
 
-[q1, q2, q3, q4].forEach(question => question.display());
-
-[q5, q6, q7, q8].forEach(question => question.displaySA());
-
-
-// let url = "https://opentdb.com/api.php?amount=5&category=28&difficulty=medium"
+// [q1, q2, q3, q4].forEach(question => question.display());
 //
-// function fetchInit (data) {
-//   return {
-//     method:
-//   }
-// }
+// [q5, q6, q7, q8].forEach(question => question.displaySA());
 
-fetch("https://opentdb.com/api.php?amount=5&category=28&difficulty=medium")
+
+
+//Fetch Api Request!! Multiple Choice
+fetch("https://opentdb.com/api.php?amount=5&category=28&difficulty=medium&type=multiple")
   .then(response => response.json())
-  .then(object => object.results[0]);
-  .then(apiDataOnPage);
+  //.then(jsonData => console.log(jsonData));
+  .then(object => object.results)
+  //.then(apiDataOnPage)
+  .then(apiArr => apiArr.map(apiForMultiDataOnPage))
+  .then(apiArr => apiArr.forEach(question => question.display()))
   //.then(jsonData => console.log(jsonData));
 
+//Fetch Api Request!! True/False
+  fetch("https://opentdb.com/api.php?amount=5&category=28&difficulty=medium&type=boolean")
+    .then(response => response.json())
+    //.then(jsonData => console.log(jsonData));
+    .then(object => object.results)
+    //.then(apiDataOnPage)
+    .then(apiArr => apiArr.map(apiForMultiDataOnPage))
+    .then(apiArr => apiArr.forEach(question => question.display()))
 
 
-function apiDataOnPage(json) {
-  let question = new MultiChoiceQuestion(object.results)
-  console.log(json);
+function apiForMultiDataOnPage(object) {
+  //console.log(object)
+  return new MultiChoiceQuestion(object.question,object.correct_answer, object.incorrect_answers)
+  //console.log(question);
+}
+
+
+
+
+
+ let url = "https://putsreq.com/SXnq1fNMxSmav1gQLDAY";
+
+function fetchInit (data) {
+  return {
+    method:'POST',
+    body: JSON.stringify(data),
+    headers: {
+    }
+  }
 }
