@@ -1,3 +1,6 @@
+let score = [];
+let questionsAnsweredCorrect = [];
+
 function Question(text, answer) {
     this.text = text;
     this.answer = answer;
@@ -115,13 +118,28 @@ function apiForMultiDataOnPage(object) {
 
 
 
- let url = "https://putsreq.com/SXnq1fNMxSmav1gQLDAY";
+ let url = "https://putsreq.com/XqRHNf3c4y7yObA0IajW";
+ // let url = "https://putsreq.com/SXnq1fNMxSmav1gQLDAY";
 
 function fetchInit (data) {
   return {
     method:'POST',
     body: JSON.stringify(data),
     headers: {
+      'Accept' : 'application/json',
+      'Content-Type' : 'application/json'
     }
   }
+
+
+let form = document.querySelector('form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  let order = {
+    userName: form.querySelector('input[name=firstName]').value,
+    score: form.querySelector('em').innerHTML,
+    questionsAsked: questionsAnsweredCorrect
+  }
+  fetch(url, fetchInit(order)).then(response => response.json()).then(jsonData => console.log(jsonData))
+})
 }
