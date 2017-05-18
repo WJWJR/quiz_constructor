@@ -11,8 +11,16 @@ function Question(text, answer) {
         let answerSpace = li.parentElement.nextElementSibling;
         if (li.textContent === this.answer) {
             answerSpace.textContent = "Yup";
+            questionsAnsweredCorrect.push({text, answer});
+            console.log(questionsAnsweredCorrect);
+            score.push(10);
+            console.log(score);
+            displayScore();
+
         } else {
             answerSpace.textContent = "Nope";
+            score.push(-10);
+            displayScore();
         }
         console.log(li.textContent, this.answer);
     }
@@ -86,6 +94,16 @@ MultiChoiceQuestion.prototype.choices = function() {
 //
 // [q5, q6, q7, q8].forEach(question => question.displaySA());
 
+function scoreTotal(total, number) {
+  return total + number;
+  // console.log()
+}
+console.log(scoreTotal);
+
+function displayScore() {
+  document.getElementById('score').innerHTML = score.reduce(scoreTotal);
+}
+
 
 
 //Fetch Api Request!! Multiple Choice
@@ -137,7 +155,7 @@ form.addEventListener('submit', function(event) {
   event.preventDefault();
   let order = {
     userName: form.querySelector('input[name=firstName]').value,
-    score: form.querySelector('em').innerHTML,
+    score: form.querySelector('#score').innerHTML,
     questionsAsked: questionsAnsweredCorrect
   }
   fetch(url, fetchInit(order)).then(response => response.json()).then(jsonData => console.log(jsonData))
